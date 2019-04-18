@@ -35,8 +35,6 @@ router.get('/new', (req, res) => {
     res.render('posts/new.ejs');
 })
 
-//DELETE
-
 // DELETE
 
 router.delete('/:id', (req, res) => {
@@ -50,6 +48,45 @@ router.delete('/:id', (req, res) => {
         }
     })
 })
+
+// EDIT
+
+router.put('/:id', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body, (err, updatePost) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.redirect('/posts')
+        }
+    })
+})
+
+router.get('/:id/edit', (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.render('posts/edit.ejs', {posts: foundPost});
+        }
+    })
+})
+
+
+// SHOW ROUTE
+
+router.get('/:id', (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.render('posts/show.ejs', {posts: foundPost});
+        }
+    })
+})
+
 
 
 
