@@ -8,6 +8,16 @@
 </head>
 <body>
     <h1>All the Authors Ever</h1>
+    <%for(let i = 0; i < authors.length; i++){%>
+    <li><a href = "<%=authors[i]._id%>"><%=authors[i].name%></a></li>
+    <form action ="/authors/<%=authors[i]._id%>?_method=DELETE" method="POST">
+        <button type="submit">Remove Author</button>
+    </form>
+    <%}%>
+    </ul>
+    <form action = "/authors/new" method = "GET">
+         <button type="submit">Create New Author</button>
+    </form>
     
 </body>
 </html>

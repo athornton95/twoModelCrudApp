@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const authorsSchema = new mongoose.Schema({
-    Name: {type: String, required: true, unique: true},
+    name: String
 });
 
 const Author = mongoose.model('Author', authorsSchema);

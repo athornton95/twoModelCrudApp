@@ -7,6 +7,17 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>All the Posts Ever</h1>
+    <%for(let i = 0; i < posts.length; i++){%>
+    <li><a href = "<%=posts[i]._id%>"><%=posts[i].title%></a></li>
+    <form action ="/posts/<%=posts[i]._id%>?_method=DELETE" method="POST">
+        <button type="submit">Remove Post</button>
+    </form>
+    <%}%>
+    </ul>
+    <form action = "/posts/new" method = "GET">
+         <button type="submit">Create New Post</button>
+    </form>
     
 </body>
 </html>
