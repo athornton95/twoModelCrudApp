@@ -49,6 +49,44 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+// EDIT
+
+router.put('/:id', (req, res) => {
+    Author.findByIdAndUpdate(req.params.id, req.body, (err, updateAuthor) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.redirect('/authors')
+        }
+    })
+})
+
+router.get('/:id/edit', (req, res) => {
+    Author.findById(req.params.id, (err, foundAuthor) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.render('authors/edit.ejs', {authors: foundAuthor});
+        }
+    })
+})
+
+
+// SHOW ROUTE
+
+router.get('/:id', (req, res) => {
+    Author.findById(req.params.id, (err, foundAuthor) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else {
+            res.render('authors/show.ejs', {authors: foundAuthor});
+        }
+    })
+})
+
 
 
 
